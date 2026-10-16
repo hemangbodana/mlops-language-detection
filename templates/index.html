@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Detection</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <main class="card">
+      <h1>Language Detection</h1>
+      <p class="subtitle">
+        TF-IDF + Naive Bayes &middot; WiLI-2018 &middot; 235 languages
+      </p>
+
+      <form method="POST" action="/">
+        <label for="text">Enter text in any language</label>
+        <textarea
+          id="text"
+          name="text"
+          rows="5"
+          placeholder="Type or paste text here..."
+          required
+        >
+{{ text }}</textarea
+        >
+        <button type="submit">Detect language</button>
+      </form>
+
+      {% if error %}
+      <div class="alert">{{ error }}</div>
+      {% endif %} {% if result %}
+      <section class="result">
+        <h2>Detected language</h2>
+        <p class="detected">
+          {{ result.detected.language }}
+          <span class="code">({{ result.detected.code }})</span>
+        </p>
+
+        <h3>Top 3 predictions</h3>
+        {% for item in result.top3 %}
+        <div class="row">
+          <span class="name">{{ item.language }} ({{ item.code }})</span>
+          <div class="bar">
+            <div class="fill" style="width: {{ item.confidence }}%"></div>
+          </div>
+          <span class="pct">{{ item.confidence }}%</span>
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+    </main>
+  </body>
+</html>
