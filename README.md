@@ -90,8 +90,8 @@ Text must be between 3 and 5000 characters. Invalid input returns HTTP 400.
 
 | Platform | URL |
 |---|---|
-| AWS EC2 (ap-southeast-2) | http://3.26.76.215:5000 |
-| Google Cloud Platform | http://YOUR_GCP_IP:5000 |
+| AWS EC2 (ap-southeast-2) | [http://3.26.76.215:5000 ](http://3.104.53.149:5000/)|
+| Google Cloud Platform | http://YOUR_GCP_IP:5000 NA|
 
 Health checks: `/health` on each URL above.
 
